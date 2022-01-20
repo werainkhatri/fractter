@@ -1,0 +1,27 @@
+name: Flutter Web
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build Web
+    env:
+      my_secret: ${{secrets.COMMIT_SECRET}}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+      - run: flutter pub get
+      - run: flutter test
+      - run: flutter build web --release
+      - run: |
+          cd build/web
+          git init
+          git config --global user.email werainkhatri.work@gmail.com
+          git config --global user.name werainkhatri
+          git remote add origin https://${{secrets.COMMIT_SECRET}}@github.com/werainkhatri/fractter.git
+          git checkout -b web
+          git add --all
+          git commit -m "update"
+          git push origin web -f
