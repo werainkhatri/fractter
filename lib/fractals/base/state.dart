@@ -5,5 +5,6 @@ abstract class FractalState {
 
   const FractalState(this.generation);
 
+  /// Updates the state to the next generation.
   FractalState nextState();
 }

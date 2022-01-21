@@ -3,7 +3,11 @@ import 'dart:ui';
 import 'painter.dart';
 import 'state.dart';
 
-/// Base class for configuring a fractal.
+/// Defines how the fractal should be displayed and animated.
+///
+/// See also:
+/// * [SierpinskiCarpetConfig], which is an extension.
+/// * [FractalAnimation], which uses this.
 abstract class FractalConfig {
   const FractalConfig(
     this.iterations,

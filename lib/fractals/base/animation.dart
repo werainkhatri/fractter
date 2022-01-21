@@ -42,7 +42,9 @@ class _FractalAnimationState extends State<FractalAnimation> {
   }
 
   void _iterate() async {
-    for (int i = 0; i < widget.config.iterations; i++) {
+    // First generation is painted initially,
+    // only (iterations - 1) generations need to be animated.
+    for (int i = 1; i < widget.config.iterations; i++) {
       await Future.delayed(widget.config.interval);
       if (mounted) {
         setState(() {
