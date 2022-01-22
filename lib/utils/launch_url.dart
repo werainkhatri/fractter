@@ -1,11 +1,11 @@
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart' as ul;
 
 import 'constants.dart';
 
 class LaunchURL {
   static void launch(String url) async {
-    if (await canLaunch(url)) {
-      launch(url);
+    if (await ul.canLaunch(url)) {
+      ul.launch(url);
     }
   }
 

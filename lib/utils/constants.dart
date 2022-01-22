@@ -1,3 +1,3 @@
 class C {
-  static const String githubLink = 'htpps://github.com/werainkhatri/fractter';
+  static const String githubLink = 'https://www.github.com/werainkhatri/fractter';
 }
