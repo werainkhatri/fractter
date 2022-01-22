@@ -14,6 +14,7 @@ abstract class FractalConfig {
     this.backgroundColor,
     this.interval,
     this.initialState,
+    this.aspectRatio,
   );
 
   /// Number of iterations the fractal would animate through.
@@ -28,5 +29,9 @@ abstract class FractalConfig {
   /// Suitable color for fractal's background.
   final Color backgroundColor;
 
+  /// Aspect ratio required to display the fractal.
+  final double aspectRatio;
+
+  /// Returns the painter for the fractal given the [state] and [config].
   FractalPainter getPainter(FractalState state, FractalConfig config);
 }

@@ -6,26 +6,26 @@ import 'painter.dart';
 import 'state.dart';
 
 /// Configuration for [SierpinskiCarpetAnimation].
-class SierpinskiCarpetConfig extends FractalConfig {
-  const SierpinskiCarpetConfig({
+class SierpinskiTriangleConfig extends FractalConfig {
+  const SierpinskiTriangleConfig({
     required int iterations,
     required Color backgroundColor,
-    required this.carpetColor,
+    required this.triangleColor,
     required Duration interval,
-    required SierpinskiCarpetState initialState,
+    required SierpinskiTriangleState initialState,
   }) : super(
           iterations,
           backgroundColor,
           interval,
           initialState,
-          1.0,
+          1.1547,
         );
 
   /// The color of the carpet.
-  final Color carpetColor;
+  final Color triangleColor;
 
   @override
   FractalPainter getPainter(
-          covariant SierpinskiCarpetState state, covariant SierpinskiCarpetConfig config) =>
-      SierpinskiCarpetPainter(state, config);
+          covariant SierpinskiTriangleState state, covariant SierpinskiTriangleConfig config) =>
+      SierpinskiTrianglePainter(state, config);
 }

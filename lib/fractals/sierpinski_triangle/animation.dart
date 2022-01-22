@@ -3,20 +3,20 @@ import '../base/animation.dart';
 import 'config.dart';
 import 'state.dart';
 
-class SierpinskiCarpetAnimation extends FractalAnimation {
-  SierpinskiCarpetAnimation({
-    int iterations = 5,
+class SierpinskiTriangleAnimation extends FractalAnimation {
+  SierpinskiTriangleAnimation({
+    int iterations = 7,
     Color backgroundColor = Colors.black,
     Color carpetColor = Colors.blue,
     Duration interval = const Duration(seconds: 1),
     Key? key,
   }) : super(
-          config: SierpinskiCarpetConfig(
+          config: SierpinskiTriangleConfig(
             iterations: iterations,
             backgroundColor: backgroundColor,
-            carpetColor: carpetColor,
+            triangleColor: carpetColor,
             interval: interval,
-            initialState: const SierpinskiCarpetState(1),
+            initialState: const SierpinskiTriangleState(1),
           ),
           key: key,
         );

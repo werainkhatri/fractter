@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+
 import 'state.dart';
 import 'config.dart';
 
@@ -15,26 +14,20 @@ class FractalAnimation extends StatefulWidget {
 
 class _FractalAnimationState extends State<FractalAnimation> {
   late FractalState _state;
-  late Key paintKey;
 
   @override
   void initState() {
     super.initState();
     _state = widget.config.initialState;
-    paintKey = const ValueKey('CustomPaint');
     _iterate();
   }
 
   @override
   Widget build(BuildContext context) {
-    final double side = min(MediaQuery.of(context).size.width, MediaQuery.of(context).size.height);
     return Center(
-      child: Container(
-        height: side,
-        width: side,
-        color: widget.config.backgroundColor,
+      child: AspectRatio(
+        aspectRatio: widget.config.aspectRatio,
         child: CustomPaint(
-          key: paintKey,
           painter: widget.config.getPainter(_state, widget.config),
         ),
       ),

@@ -5,33 +5,30 @@ import '../base/painter.dart';
 import 'config.dart';
 import 'state.dart';
 
+/// [CustomPainter] that handles painting the sierpinski carpet.
 class SierpinskiCarpetPainter extends FractalPainter {
+  /// Make sure the [CustomPaint] using this is wrapped with [AspectRatio]
+  /// with aspectRatio set to `FractalConfig.aspectRatio`.
   SierpinskiCarpetPainter(
-    SierpinskiCarpetState state, {
-    SierpinskiCarpetConfig config = const SierpinskiCarpetConfig(),
-  })  : _config = config,
-        super(state);
-
-  final SierpinskiCarpetConfig _config;
+    SierpinskiCarpetState state,
+    SierpinskiCarpetConfig config,
+  ) : super(state, config);
 
   double carpetWidth = 0;
   double carpetHeight = 0;
-  double offsetX = 0, offsetY = 0;
+  final Paint painter = Paint();
 
   @override
   void paintState(Canvas canvas, Size size) {
-    double squareSize = min(size.width, size.height);
-    if (size.width == size.height) {
-      offsetX = 0;
-      offsetY = 0;
-    } else if (size.width > size.height) {
-      offsetX = (size.width - size.height) / 2;
-    } else {
-      offsetY = (size.height - size.width) / 2;
-    }
+    carpetWidth = size.width;
+    carpetHeight = size.height;
+    painter.style = PaintingStyle.fill;
 
-    carpetWidth = squareSize;
-    carpetHeight = squareSize;
+    /// draws the first generation carpet.
+    painter.color = (config as SierpinskiCarpetConfig).carpetColor;
+    canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height), painter);
+
+    painter.color = config.backgroundColor;
 
     for (int i = 1; i <= state.generation; i++) {
       _drawCarpet(canvas, i);
@@ -46,8 +43,8 @@ class SierpinskiCarpetPainter extends FractalPainter {
     for (double i = 0; i < rows; i++) {
       for (double j = 0; j < rows; j++) {
         if (_skip(i, j, step)) continue;
-        double x = offsetX + (partW * i);
-        double y = offsetY + (partH * j);
+        double x = (partW * i);
+        double y = (partH * j);
         _drawSquare(canvas, Offset(x, y), Offset(x + partW, y + partH));
       }
     }
@@ -56,10 +53,7 @@ class SierpinskiCarpetPainter extends FractalPainter {
   void _drawSquare(Canvas canvas, Offset topLeft, Offset bottomRight) {
     Rect rect = Rect.fromPoints(topLeft, bottomRight);
     rect = rect.deflate(rect.width / 3);
-    Paint paint = Paint()
-      ..color = _config.carpetColor
-      ..style = PaintingStyle.fill;
-    canvas.drawRect(rect, paint);
+    canvas.drawRect(rect, painter);
   }
 
   bool _skip(double i, double j, int steps) {

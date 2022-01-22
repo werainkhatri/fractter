@@ -24,11 +24,6 @@ class FractalScreen extends StatelessWidget {
             ),
           ],
         ),
-        body: Center(
-          child: AspectRatio(
-            aspectRatio: 1,
-            child: fractal.animationWidget,
-          ),
-        ),
+        body: fractal.animationWidget,
       );
 }
