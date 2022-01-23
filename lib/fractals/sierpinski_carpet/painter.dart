@@ -16,6 +16,7 @@ class SierpinskiCarpetPainter extends FractalPainter {
 
   double carpetWidth = 0;
   double carpetHeight = 0;
+  late double rows;
   final Paint painter = Paint();
 
   @override
@@ -30,13 +31,14 @@ class SierpinskiCarpetPainter extends FractalPainter {
 
     painter.color = config.backgroundColor;
 
-    for (int i = 1; i <= state.generation; i++) {
+    rows = 1;
+    for (int i = 2; i <= state.generation; i++) {
       _drawCarpet(canvas, i);
+      rows *= 3;
     }
   }
 
   void _drawCarpet(Canvas canvas, int step) {
-    double rows = pow(3.0, step - 1).toDouble();
     double partW = carpetWidth / rows;
     double partH = carpetHeight / rows;
 

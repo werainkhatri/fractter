@@ -24,11 +24,13 @@ class _FractalAnimationState extends State<FractalAnimation> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: AspectRatio(
-        aspectRatio: widget.config.aspectRatio,
-        child: CustomPaint(
-          painter: widget.config.getPainter(_state, widget.config),
+    return RepaintBoundary(
+      child: Center(
+        child: AspectRatio(
+          aspectRatio: widget.config.aspectRatio,
+          child: CustomPaint(
+            painter: widget.config.getPainter(_state, widget.config),
+          ),
         ),
       ),
     );

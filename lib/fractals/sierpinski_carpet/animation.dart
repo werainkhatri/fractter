@@ -5,7 +5,7 @@ import 'state.dart';
 
 class SierpinskiCarpetAnimation extends FractalAnimation {
   SierpinskiCarpetAnimation({
-    int iterations = 5,
+    int iterations = 6,
     Color backgroundColor = Colors.black,
     Color carpetColor = Colors.blue,
     Duration interval = const Duration(seconds: 1),
