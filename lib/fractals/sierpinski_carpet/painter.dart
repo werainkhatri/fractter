@@ -12,7 +12,10 @@ class SierpinskiCarpetPainter extends FractalPainter {
   SierpinskiCarpetPainter(
     SierpinskiCarpetState state,
     SierpinskiCarpetConfig config,
-  ) : super(state, config);
+  )   : _config = config,
+        super(state, config);
+
+  final SierpinskiCarpetConfig _config;
 
   double carpetWidth = 0;
   double carpetHeight = 0;
@@ -26,10 +29,10 @@ class SierpinskiCarpetPainter extends FractalPainter {
     painter.style = PaintingStyle.fill;
 
     /// draws the first generation carpet.
-    painter.color = (config as SierpinskiCarpetConfig).carpetColor;
+    painter.color = _config.carpetColor;
     canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height), painter);
 
-    painter.color = config.backgroundColor;
+    painter.color = _config.backgroundColor;
 
     rows = 1;
     for (int i = 2; i <= state.generation; i++) {

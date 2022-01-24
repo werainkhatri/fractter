@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'painter.dart';
 import 'state.dart';
 
@@ -11,7 +9,6 @@ import 'state.dart';
 abstract class FractalConfig {
   const FractalConfig(
     this.iterations,
-    this.backgroundColor,
     this.interval,
     this.initialState,
     this.aspectRatio,
@@ -25,9 +22,6 @@ abstract class FractalConfig {
 
   /// Initial State of the fractal.
   final FractalState initialState;
-
-  /// Suitable color for fractal's background.
-  final Color backgroundColor;
 
   /// Aspect ratio required to display the fractal.
   final double aspectRatio;

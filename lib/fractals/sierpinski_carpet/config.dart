@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fractter/fractals/sierpinski_carpet/animation.dart';
-import '../base/painter.dart';
+
 import '../base/config.dart';
+import '../base/painter.dart';
+import 'animation.dart';
 import 'painter.dart';
 import 'state.dart';
 
@@ -9,13 +10,12 @@ import 'state.dart';
 class SierpinskiCarpetConfig extends FractalConfig {
   const SierpinskiCarpetConfig({
     required int iterations,
-    required Color backgroundColor,
+    required this.backgroundColor,
     required this.carpetColor,
     required Duration interval,
     required SierpinskiCarpetState initialState,
   }) : super(
           iterations,
-          backgroundColor,
           interval,
           initialState,
           1.0,
@@ -23,6 +23,9 @@ class SierpinskiCarpetConfig extends FractalConfig {
 
   /// The color of the carpet.
   final Color carpetColor;
+
+  /// The color of the background.
+  final Color backgroundColor;
 
   @override
   FractalPainter getPainter(
