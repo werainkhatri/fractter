@@ -1,4 +1,5 @@
 import 'package:fractter/fractals/base/animation.dart';
+import 'package:fractter/fractals/koch_curve/animation.dart';
 import 'package:fractter/fractals/sierpinski_carpet/animation.dart';
 import 'package:fractter/fractals/sierpinski_triangle/animation.dart';
 
@@ -16,6 +17,7 @@ class Fractal {
   final FractalAnimation animationWidget;
 
   static final List<Fractal> all = <Fractal>[
+    kochCurve,
     sierpinskiCarpet,
     sierpinskiTriangle,
   ];
@@ -39,5 +41,16 @@ class Fractal {
         'subtriangles, ad infinitum.',
     wikiLink: 'https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle',
     animationWidget: SierpinskiTriangleAnimation(),
+  );
+
+  static final Fractal kochCurve = Fractal(
+    name: 'Koch Curve',
+    shortDescription: 'The Koch curve is a plane fractal which starts with '
+        'a straight line, which is divided into 3 equal segments. An equilateral '
+        'triangle is constructed using the middle line as the base, and this base '
+        'is removed. This results in 4 new line segments, on which the same procedure '
+        'is applied recursively, ad infinitum.',
+    wikiLink: 'https://en.wikipedia.org/wiki/Koch_curve',
+    animationWidget: KochCurveAnimation(),
   );
 }
