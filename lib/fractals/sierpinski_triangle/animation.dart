@@ -5,7 +5,7 @@ import 'state.dart';
 
 class SierpinskiTriangleAnimation extends FractalAnimation {
   SierpinskiTriangleAnimation({
-    int iterations = 7,
+    int iterations = 8,
     Color backgroundColor = Colors.black,
     Color carpetColor = Colors.blue,
     Duration interval = const Duration(seconds: 1),
