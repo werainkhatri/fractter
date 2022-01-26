@@ -1,5 +1,6 @@
 import 'package:fractter/fractals/base/animation.dart';
 import 'package:fractter/fractals/koch_curve/animation.dart';
+import 'package:fractter/fractals/koch_snowflake/animation.dart';
 import 'package:fractter/fractals/sierpinski_carpet/animation.dart';
 import 'package:fractter/fractals/sierpinski_triangle/animation.dart';
 
@@ -18,6 +19,7 @@ class Fractal {
 
   static final List<Fractal> all = <Fractal>[
     kochCurve,
+    kochSnowflake,
     sierpinskiCarpet,
     sierpinskiTriangle,
   ];
@@ -52,5 +54,14 @@ class Fractal {
         'is applied recursively, ad infinitum.',
     wikiLink: 'https://en.wikipedia.org/wiki/Koch_curve',
     animationWidget: KochCurveAnimation(),
+  );
+
+  static final Fractal kochSnowflake = Fractal(
+    name: 'Koch Snowflake',
+    shortDescription: 'The Koch snowflake is a plane fractal which starts with '
+        'an equilateral triangle. Each side is treated as a starting line and '
+        'the Koch curve fractal is applied to them recursively, ad infinitum.',
+    wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
+    animationWidget: KochSnowflakeAnimation(),
   );
 }

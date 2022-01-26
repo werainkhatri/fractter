@@ -1,8 +1,9 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:fractter/utils/line.dart';
+
+import 'constants.dart';
 
 /// Class containing static utility functions.
 class F {
@@ -28,7 +29,7 @@ class F {
   /// [distance] should be more than zero.
   static Offset getPerpBisectingPoint(Line line, double distance, bool below) {
     assert(distance > 0);
-    if (line.slope.abs() < precisionErrorTolerance) {
+    if (line.slope.abs() < C.precisionErrorTolerance) {
       return line.midpoint + Offset(0, distance * line.delX.sign * (below ? -1 : 1));
     }
     Offset midpoint = line.midpoint;
@@ -45,6 +46,8 @@ class F {
       }
     }
     // Will never reach here.
-    throw UnimplementedError();
+    throw UnimplementedError(
+      'Line: $line\ndistance: $distance\nbelow: $below\nslope: $slope\ndx: $dx; dy: $dy',
+    );
   }
 }

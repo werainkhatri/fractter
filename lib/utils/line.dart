@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 
+import 'constants.dart';
+
 /// Line segment with end points [p1] and [p2].
 class Line {
   final Offset p1;
@@ -53,12 +55,12 @@ class Line {
   bool isPerpTo(Line other) =>
       _isPerpTo(other) ||
       other._isPerpTo(this) ||
-      ((slope * other.slope + 1).abs() < precisionErrorTolerance);
+      ((slope * other.slope + 1).abs() < C.precisionErrorTolerance);
 
   bool _isPerpTo(Line other) => (slope == 0 && other.slope.abs() == double.infinity);
 
   Line copyWith({Offset? p1, Offset? p2}) => Line(p1 ?? this.p1, p2 ?? this.p2);
 
   @override
-  String toString() => 'Line($p1, $p2)';
+  String toString() => 'Line($p1, $p2)(slope: $slope)';
 }
