@@ -1,4 +1,5 @@
 import 'package:fractter/fractals/base/animation.dart';
+import 'package:fractter/fractals/koch_anti_snowflake/animation.dart';
 import 'package:fractter/fractals/koch_curve/animation.dart';
 import 'package:fractter/fractals/koch_snowflake/animation.dart';
 import 'package:fractter/fractals/sierpinski_carpet/animation.dart';
@@ -20,6 +21,7 @@ class Fractal {
   static final List<Fractal> all = <Fractal>[
     kochCurve,
     kochSnowflake,
+    kochAntiSnowflake,
     sierpinskiCarpet,
     sierpinskiTriangle,
   ];
@@ -63,5 +65,13 @@ class Fractal {
         'the Koch curve fractal is applied to them recursively, ad infinitum.',
     wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
     animationWidget: KochSnowflakeAnimation(),
+  );
+
+  static final Fractal kochAntiSnowflake = Fractal(
+    name: 'Koch Anti Snowflake',
+    shortDescription: 'The Koch anti snowflake is a plane fractal which is same '
+        'as the Koch snowflake, but instead of the curve buldging out, they buldge in.',
+    wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
+    animationWidget: KochAntiSnowflakeAnimation(),
   );
 }

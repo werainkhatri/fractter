@@ -1,8 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
-
 import 'constants.dart';
 
 /// Line segment with end points [p1] and [p2].
@@ -60,6 +58,9 @@ class Line {
   bool _isPerpTo(Line other) => (slope == 0 && other.slope.abs() == double.infinity);
 
   Line copyWith({Offset? p1, Offset? p2}) => Line(p1 ?? this.p1, p2 ?? this.p2);
+
+  /// Returns an opposite line, replacing [p1] and [p2].
+  Line antiLine() => Line(p2, p1);
 
   @override
   String toString() => 'Line($p1, $p2)(slope: $slope)';
