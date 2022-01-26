@@ -81,6 +81,11 @@ void main() {
     );
   });
 
+  test('antiLine', () {
+    expect(Line(const Offset(1, 1), const Offset(2, 2)).antiLine(),
+        equals(Line(const Offset(2, 2), const Offset(1, 1))));
+  });
+
   test('toString', () {
     expect(Line(const Offset(1, 1), const Offset(2, 2)).toString(),
         equals('Line(Offset(1.0, 1.0), Offset(2.0, 2.0))'));

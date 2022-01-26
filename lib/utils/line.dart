@@ -63,5 +63,11 @@ class Line {
   Line antiLine() => Line(p2, p1);
 
   @override
-  String toString() => 'Line($p1, $p2)(slope: $slope)';
+  String toString() => 'Line($p1, $p2)';
+
+  @override
+  bool operator ==(Object other) => other is Line && p1 == other.p1 && p2 == other.p2;
+
+  @override
+  int get hashCode => Object.hash(p1, p2);
 }
