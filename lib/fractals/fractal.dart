@@ -1,6 +1,7 @@
 import 'package:fractter/fractals/base/animation.dart';
 import 'package:fractter/fractals/koch_anti_snowflake/animation.dart';
 import 'package:fractter/fractals/koch_curve/animation.dart';
+import 'package:fractter/fractals/koch_mix_snowflake/animation.dart';
 import 'package:fractter/fractals/koch_snowflake/animation.dart';
 import 'package:fractter/fractals/sierpinski_carpet/animation.dart';
 import 'package:fractter/fractals/sierpinski_triangle/animation.dart';
@@ -22,6 +23,7 @@ class Fractal {
     kochCurve,
     kochSnowflake,
     kochAntiSnowflake,
+    kochMixSnowflake,
     sierpinskiCarpet,
     sierpinskiTriangle,
   ];
@@ -73,5 +75,13 @@ class Fractal {
         'as the Koch snowflake, but instead of the curve buldging out, they buldge in.',
     wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
     animationWidget: KochAntiSnowflakeAnimation(),
+  );
+
+  static final Fractal kochMixSnowflake = Fractal(
+    name: 'Koch Mix Snowflake',
+    shortDescription: 'The Koch mix snowflake is a plane fractal which is the '
+        'summation of Koch snowflake and Koch anti snowflake.',
+    wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
+    animationWidget: KochMixSnowflakeAnimation(),
   );
 }
