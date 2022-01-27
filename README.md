@@ -15,3 +15,15 @@ Step-by-step Fractal generator, built using Flutter.
 ### 2. The Koch Curve (7 Generations)
 
 <img width=400 src=.github/images/koch_curve.gif />
+
+### 2. The Koch Snowflake (7 Generations)
+
+<img width=400 src=.github/images/koch_snowflake.gif />
+
+### 2. The Koch Anti Snowflake (7 Generations)
+
+<img width=400 src=.github/images/koch_anti_snowflake.gif />
+
+### 2. The Koch Mix Snowflake (7 Generations)
+
+<img width=400 src=.github/images/koch_mix_snowflake.gif />
