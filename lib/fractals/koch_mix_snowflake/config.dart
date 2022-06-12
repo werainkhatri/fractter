@@ -24,7 +24,6 @@ class KochMixSnowflakeConfig extends FractalConfig {
   final Color curveColor;
 
   @override
-  FractalPainter getPainter(
-          covariant KochMixSnowflakeState state, covariant KochMixSnowflakeConfig config) =>
-      KochMixSnowflakePainter(state, config);
+  FractalPainter getPainter(covariant KochMixSnowflakeState state) =>
+      KochMixSnowflakePainter(state, this);
 }

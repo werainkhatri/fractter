@@ -27,5 +27,5 @@ abstract class FractalConfig {
   final double aspectRatio;
 
   /// Returns the painter for the fractal given the [state] and [config].
-  FractalPainter getPainter(FractalState state, FractalConfig config);
+  FractalPainter getPainter(FractalState state);
 }

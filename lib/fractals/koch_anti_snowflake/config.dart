@@ -24,7 +24,6 @@ class KochAntiSnowflakeConfig extends FractalConfig {
   final Color curveColor;
 
   @override
-  FractalPainter getPainter(
-          covariant KochAntiSnowflakeState state, covariant KochAntiSnowflakeConfig config) =>
-      KochAntiSnowflakePainter(state, config);
+  FractalPainter getPainter(covariant KochAntiSnowflakeState state) =>
+      KochAntiSnowflakePainter(state, this);
 }

@@ -28,7 +28,6 @@ class SierpinskiTriangleConfig extends FractalConfig {
   final Color backgroundColor;
 
   @override
-  FractalPainter getPainter(
-          covariant SierpinskiTriangleState state, covariant SierpinskiTriangleConfig config) =>
-      SierpinskiTrianglePainter(state, config);
+  FractalPainter getPainter(covariant SierpinskiTriangleState state) =>
+      SierpinskiTrianglePainter(state, this);
 }

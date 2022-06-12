@@ -29,7 +29,7 @@ class _FractalAnimationState extends State<FractalAnimation> {
         child: AspectRatio(
           aspectRatio: widget.config.aspectRatio,
           child: CustomPaint(
-            painter: widget.config.getPainter(_state, widget.config),
+            painter: widget.config.getPainter(_state),
           ),
         ),
       ),

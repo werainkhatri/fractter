@@ -28,7 +28,6 @@ class SierpinskiCarpetConfig extends FractalConfig {
   final Color backgroundColor;
 
   @override
-  FractalPainter getPainter(
-          covariant SierpinskiCarpetState state, covariant SierpinskiCarpetConfig config) =>
-      SierpinskiCarpetPainter(state, config);
+  FractalPainter getPainter(covariant SierpinskiCarpetState state) =>
+      SierpinskiCarpetPainter(state, this);
 }

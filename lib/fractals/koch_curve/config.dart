@@ -24,6 +24,6 @@ class KochCurveConfig extends FractalConfig {
   final Color curveColor;
 
   @override
-  FractalPainter getPainter(covariant KochCurveState state, covariant KochCurveConfig config) =>
-      KochCurvePainter(state, config);
+  FractalPainter getPainter(covariant KochCurveState state) =>
+      KochCurvePainter(state, this);
 }
