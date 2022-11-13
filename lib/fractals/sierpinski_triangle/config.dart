@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../base/config.dart';
-import '../base/painter.dart';
-import 'animation.dart';
-import 'painter.dart';
-import 'state.dart';
+import 'package:fractter/fractals/base/config.dart';
 
 /// Configuration for [SierpinskiTriangleAnimation].
 class SierpinskiTriangleConfig extends FractalConfig {
   const SierpinskiTriangleConfig({
-    required int iterations,
+    required super.iterations,
     required this.backgroundColor,
     required this.triangleColor,
     required Duration interval,
-    required SierpinskiTriangleState initialState,
-  }) : super(
-          iterations,
-          interval,
-          initialState,
-          1.1547,
-        );
+    required super.initialState,
+  }) : super(aspectRatio: 1.1547);
 
   /// The color of the triangle.
   final Color triangleColor;
 
   /// The color of the background.
   final Color backgroundColor;
-
-  @override
-  FractalPainter getPainter(covariant SierpinskiTriangleState state) =>
-      SierpinskiTrianglePainter(state, this);
 }

@@ -1,30 +1,25 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:fractter/fractals/base/painter.dart';
 
-import '../base/painter.dart';
 import 'config.dart';
-import 'state.dart';
 
 /// [CustomPainter] that handles painting the sierpinski triangle.
 ///
 /// Make sure the [CustomPaint] using this is wrapped with [AspectRatio]
 /// with aspectRatio set to 1.0.
 class SierpinskiTrianglePainter extends FractalPainter {
-  SierpinskiTrianglePainter(
-    SierpinskiTriangleState state,
-    SierpinskiTriangleConfig config,
-  )   : _config = config,
-        super(state, config);
+  SierpinskiTrianglePainter(super.state, super.config);
 
-  final SierpinskiTriangleConfig _config;
+  SierpinskiTriangleConfig get _config => config as SierpinskiTriangleConfig;
 
   late double side, height;
   Queue<Offset> points = Queue<Offset>();
   final Paint painter = Paint();
 
   @override
-  void paintState(Canvas canvas, Size size) {
+  void paint(Canvas canvas, Size size) {
     side = size.width;
     height = size.height;
     painter.style = PaintingStyle.fill;

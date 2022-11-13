@@ -1,4 +1,5 @@
-import 'painter.dart';
+import 'package:fractter/utils/constants.dart';
+
 import 'state.dart';
 
 /// Defines how the fractal should be displayed and animated.
@@ -7,12 +8,12 @@ import 'state.dart';
 /// * [SierpinskiCarpetConfig], which is an extension.
 /// * [FractalAnimation], which uses this.
 abstract class FractalConfig {
-  const FractalConfig(
-    this.iterations,
-    this.interval,
-    this.initialState,
-    this.aspectRatio,
-  );
+  const FractalConfig({
+    required this.iterations,
+    this.interval = C.defaultInterval,
+    required this.initialState,
+    required this.aspectRatio,
+  });
 
   /// Number of iterations the fractal would animate through.
   final int iterations;
@@ -25,7 +26,4 @@ abstract class FractalConfig {
 
   /// Aspect ratio required to display the fractal.
   final double aspectRatio;
-
-  /// Returns the painter for the fractal given the [state] and [config].
-  FractalPainter getPainter(FractalState state);
 }

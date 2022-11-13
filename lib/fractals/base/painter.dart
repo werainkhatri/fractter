@@ -13,16 +13,5 @@ abstract class FractalPainter extends CustomPainter {
   const FractalPainter(this.state, this.config);
 
   @override
-  void paint(Canvas canvas, Size size) {
-    paintState(canvas, size);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
-
-  /// Called when the fractal needs to be painted to the [canvas]
-  /// accortding to the [state].
-  void paintState(Canvas canvas, Size size);
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

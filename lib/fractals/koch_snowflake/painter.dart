@@ -6,24 +6,19 @@ import '../../utils/line.dart';
 import '../base/painter.dart';
 import '../common_painter.dart';
 import 'config.dart';
-import 'state.dart';
 
 /// [CustomPainter] that handles painting the koch snowflake.
 class KochSnowflakePainter extends FractalPainter {
   /// Make sure the [CustomPaint] using this is wrapped with [AspectRatio]
   /// with aspectRatio set to `FractalConfig.aspectRatio`.
-  KochSnowflakePainter(
-    KochSnowflakeState state,
-    KochSnowflakeConfig config,
-  )   : _config = config,
-        super(state, config);
+  KochSnowflakePainter(super.state, super.config);
 
-  final KochSnowflakeConfig _config;
+  KochSnowflakeConfig get _config => config as KochSnowflakeConfig;
 
   final Paint painter = Paint();
 
   @override
-  void paintState(Canvas canvas, Size size) {
+  void paint(Canvas canvas, Size size) {
     painter
       ..strokeWidth = 1.0
       ..color = _config.curveColor;

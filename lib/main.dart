@@ -9,5 +9,8 @@ class Fractter extends StatelessWidget {
   const Fractter({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => const MaterialApp(home: HomeScreen());
+  Widget build(BuildContext context) => MaterialApp(
+        theme: ThemeData.dark(),
+        home: const HomeScreen(),
+      );
 }

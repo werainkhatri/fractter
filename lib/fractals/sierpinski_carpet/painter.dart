@@ -1,21 +1,17 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import '../base/painter.dart';
+import 'package:fractter/fractals/base/painter.dart';
+
 import 'config.dart';
-import 'state.dart';
 
 /// [CustomPainter] that handles painting the sierpinski carpet.
 class SierpinskiCarpetPainter extends FractalPainter {
   /// Make sure the [CustomPaint] using this is wrapped with [AspectRatio]
   /// with aspectRatio set to `FractalConfig.aspectRatio`.
-  SierpinskiCarpetPainter(
-    SierpinskiCarpetState state,
-    SierpinskiCarpetConfig config,
-  )   : _config = config,
-        super(state, config);
+  SierpinskiCarpetPainter(super.state, super.config);
 
-  final SierpinskiCarpetConfig _config;
+  SierpinskiCarpetConfig get _config => config as SierpinskiCarpetConfig;
 
   double carpetWidth = 0;
   double carpetHeight = 0;
@@ -23,7 +19,7 @@ class SierpinskiCarpetPainter extends FractalPainter {
   final Paint painter = Paint();
 
   @override
-  void paintState(Canvas canvas, Size size) {
+  void paint(Canvas canvas, Size size) {
     carpetWidth = size.width;
     carpetHeight = size.height;
     painter.style = PaintingStyle.fill;

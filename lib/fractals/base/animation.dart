@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:fractter/fractals/base/painter.dart';
 
 import 'state.dart';
 import 'config.dart';
 
+typedef FractalPainterGetter = FractalPainter Function(
+    FractalState state, FractalConfig config);
+
 /// Base class for animating a fractal.
 class FractalAnimation extends StatefulWidget {
   final FractalConfig config;
-  const FractalAnimation({Key? key, required this.config}) : super(key: key);
+  final FractalPainterGetter getPainter;
+  const FractalAnimation({
+    super.key,
+    required this.config,
+    required this.getPainter,
+  });
 
   @override
   _FractalAnimationState createState() => _FractalAnimationState();
@@ -29,7 +38,7 @@ class _FractalAnimationState extends State<FractalAnimation> {
         child: AspectRatio(
           aspectRatio: widget.config.aspectRatio,
           child: CustomPaint(
-            painter: widget.config.getPainter(_state),
+            painter: widget.getPainter(_state, widget.config),
           ),
         ),
       ),

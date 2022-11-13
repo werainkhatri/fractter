@@ -1,29 +1,22 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import '../../utils/line.dart';
 import '../base/painter.dart';
 import '../common_painter.dart';
 import 'config.dart';
-import 'state.dart';
 
 /// [CustomPainter] that handles painting the koch anti snowflake.
 class KochAntiSnowflakePainter extends FractalPainter {
   /// Make sure the [CustomPaint] using this is wrapped with [AspectRatio]
   /// with aspectRatio set to `FractalConfig.aspectRatio`.
-  KochAntiSnowflakePainter(
-    KochAntiSnowflakeState state,
-    KochAntiSnowflakeConfig config,
-  )   : _config = config,
-        super(state, config);
+  KochAntiSnowflakePainter(super.state, super.config);
 
-  final KochAntiSnowflakeConfig _config;
+  KochAntiSnowflakeConfig get _config => config as KochAntiSnowflakeConfig;
 
   final Paint painter = Paint();
 
   @override
-  void paintState(Canvas canvas, Size size) {
+  void paint(Canvas canvas, Size size) {
     painter
       ..strokeWidth = 1.0
       ..color = _config.curveColor;
