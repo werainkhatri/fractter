@@ -168,6 +168,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.12"
+  umbra_flutter:
+    dependency: "direct main"
+    description:
+      name: umbra_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0-dev.4"
   url_launcher:
     dependency: "direct main"
     description:

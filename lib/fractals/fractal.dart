@@ -13,13 +13,15 @@ class Fractal {
     required this.name,
     required this.shortDescription,
     required this.wikiLink,
-    required this.animationWidget,
+    required this.customPaintWidget,
+    this.shaderWidget,
   });
 
   final String name;
   final String shortDescription;
   final String wikiLink;
-  final FractalAnimation animationWidget;
+  final Widget customPaintWidget;
+  final Widget? shaderWidget;
 
   static final List<Fractal> all = <Fractal>[
     kochAntiSnowflake,
@@ -36,7 +38,7 @@ class Fractal {
         'The Koch anti snowflake is a plane fractal which is same '
         'as the Koch snowflake, but instead of the curve buldging out, they buldge in.',
     wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
-    animationWidget: FractalAnimation(
+    customPaintWidget: FractalAnimation(
       config: const KochAntiSnowflakeConfig(
         iterations: 7,
         curveColor: Colors.blue,
@@ -55,7 +57,7 @@ class Fractal {
         'is removed. This results in 4 new line segments, on which the same procedure '
         'is applied recursively, ad infinitum.',
     wikiLink: 'https://en.wikipedia.org/wiki/Koch_curve',
-    animationWidget: FractalAnimation(
+    customPaintWidget: FractalAnimation(
       config: const KochCurveConfig(
         iterations: 7,
         curveColor: Colors.blue,
@@ -72,7 +74,7 @@ class Fractal {
         'an equilateral triangle. Each side is treated as a starting line and '
         'the Koch curve fractal is applied to them recursively, ad infinitum.',
     wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
-    animationWidget: FractalAnimation(
+    customPaintWidget: FractalAnimation(
       config: const KochSnowflakeConfig(
         iterations: 7,
         curveColor: Colors.blue,
@@ -88,7 +90,7 @@ class Fractal {
     shortDescription: 'The Koch mix snowflake is a plane fractal which is the '
         'summation of Koch snowflake and Koch anti snowflake.',
     wikiLink: 'https://en.wikipedia.org/wiki/Koch_snowflake',
-    animationWidget: FractalAnimation(
+    customPaintWidget: FractalAnimation(
       config: const KochMixSnowflakeConfig(
         iterations: 7,
         curveColor: Colors.blue,
@@ -106,7 +108,7 @@ class Fractal {
         '3-by-3 grid, and the central subsquare is removed. The same procedure is '
         'then applied recursively to the remaining 8 subsquares, ad infinitum.',
     wikiLink: 'https://en.wikipedia.org/wiki/Sierpi%C5%84ski_carpet',
-    animationWidget: FractalAnimation(
+    customPaintWidget: FractalAnimation(
       config: const SierpinskiCarpetConfig(
         iterations: 7,
         backgroundColor: Colors.black,
@@ -115,6 +117,10 @@ class Fractal {
         initialState: SierpinskiCarpetState(1),
       ),
       getPainter: (state, config) => SierpinskiCarpetPainter(state, config),
+    ),
+    shaderWidget: const SierpinskiCarpet(
+      carpetColor: Colors.blue,
+      backgroundColor: Colors.black,
     ),
   );
 
@@ -126,7 +132,7 @@ class Fractal {
         'The same procedure is then applied recursively to the remaining 3 '
         'subtriangles, ad infinitum.',
     wikiLink: 'https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle',
-    animationWidget: FractalAnimation(
+    customPaintWidget: FractalAnimation(
       config: const SierpinskiTriangleConfig(
         iterations: 7,
         backgroundColor: Colors.black,

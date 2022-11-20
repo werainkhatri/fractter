@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  umbra_flutter: ^0.1.0-dev.4
   url_launcher: ^6.0.18
 
 dev_dependencies:

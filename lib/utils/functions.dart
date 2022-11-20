@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:fractter/utils/line.dart';
+import 'package:umbra_flutter/umbra_flutter.dart';
 
 import 'constants.dart';
 
@@ -30,7 +31,8 @@ class F {
   static Offset getPerpBisectingPoint(Line line, double distance, bool below) {
     assert(distance > 0);
     if (line.slope.abs() < C.precisionErrorTolerance) {
-      return line.midpoint + Offset(0, distance * line.delX.sign * (below ? -1 : 1));
+      return line.midpoint +
+          Offset(0, distance * line.delX.sign * (below ? -1 : 1));
     }
     Offset midpoint = line.midpoint;
     double slope = -1 / line.slope;
@@ -50,4 +52,12 @@ class F {
       'Line: $line\ndistance: $distance\nbelow: $below\nslope: $slope\ndx: $dx; dy: $dy',
     );
   }
+
+  /// Converts Color to Vector4
+  static Vector4 colorToVector4(Color color) => Vector4(
+        color.red / 255,
+        color.green / 255,
+        color.blue / 255,
+        color.alpha / 255,
+      );
 }
