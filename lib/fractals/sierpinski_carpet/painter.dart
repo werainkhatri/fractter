@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:fractter/fractals/base/painter.dart';
@@ -13,57 +13,117 @@ class SierpinskiCarpetPainter extends FractalPainter {
 
   SierpinskiCarpetConfig get _config => config as SierpinskiCarpetConfig;
 
-  double carpetWidth = 0;
-  double carpetHeight = 0;
-  late double rows;
-  final Paint painter = Paint();
+  List<Rect Function(Rect)> rectGetters = [
+    _getTopLeftRect,
+    _getTopMiddleRect,
+    _getTopRightRect,
+    _getMiddleLeftRect,
+    _getMiddleRightRect,
+    _getBottomLeftRect,
+    _getBottomMiddleRect,
+    _getBottomRightRect,
+  ];
+  final Paint painter = Paint()..style = PaintingStyle.fill;
 
   @override
   void paint(Canvas canvas, Size size) {
-    carpetWidth = size.width;
-    carpetHeight = size.height;
-    painter.style = PaintingStyle.fill;
+    final Queue<Rect> currentRects = Queue()
+      ..add(Rect.fromPoints(Offset.zero, Offset(size.width, size.height)));
 
     /// draws the first generation carpet.
     painter.color = _config.carpetColor;
-    canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height), painter);
+    canvas.drawRect(currentRects.first, painter);
 
     painter.color = _config.backgroundColor;
 
-    rows = 1;
     for (int i = 2; i <= state.generation; i++) {
-      _drawCarpet(canvas, i);
-      rows *= 3;
-    }
-  }
+      int rectCount = currentRects.length;
+      while (rectCount-- > 0) {
+        final Rect currentRect = currentRects.first;
+        currentRects.removeFirst();
 
-  void _drawCarpet(Canvas canvas, int step) {
-    double partW = carpetWidth / rows;
-    double partH = carpetHeight / rows;
+        // since width and height are the same, we can use either.
+        final Rect rectToRemove = currentRect.deflate(currentRect.width / 3);
+        canvas.drawRect(rectToRemove, painter);
 
-    for (double i = 0; i < rows; i++) {
-      for (double j = 0; j < rows; j++) {
-        if (_skip(i, j, step)) continue;
-        double x = (partW * i);
-        double y = (partH * j);
-        _drawSquare(canvas, Offset(x, y), Offset(x + partW, y + partH));
+        if (i == state.generation) continue;
+
+        for (var rectGetter in rectGetters) {
+          currentRects.add(rectGetter(currentRect));
+        }
       }
     }
   }
 
-  void _drawSquare(Canvas canvas, Offset topLeft, Offset bottomRight) {
-    Rect rect = Rect.fromPoints(topLeft, bottomRight);
-    rect = rect.deflate(rect.width / 3);
-    canvas.drawRect(rect, painter);
+  static Rect _getTopLeftRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left,
+      rect.top,
+      rect.left + rect.width / 3,
+      rect.top + rect.height / 3,
+    );
   }
 
-  bool _skip(double i, double j, int steps) {
-    for (int p = 1; p <= steps; p++) {
-      double p3 = pow(3.0, p - 1).toDouble();
-      if ((i ~/ p3) % 3 == 1 && (j ~/ p3) % 3 == 1) {
-        return true;
-      }
-    }
-    return false;
+  static Rect _getTopMiddleRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + rect.width / 3,
+      rect.top,
+      rect.left + (rect.width / 3) * 2,
+      rect.top + rect.height / 3,
+    );
+  }
+
+  static Rect _getTopRightRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + (rect.width / 3) * 2,
+      rect.top,
+      rect.right,
+      rect.top + rect.height / 3,
+    );
+  }
+
+  static Rect _getMiddleLeftRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left,
+      rect.top + rect.height / 3,
+      rect.left + rect.width / 3,
+      rect.top + (rect.height / 3) * 2,
+    );
+  }
+
+  static Rect _getMiddleRightRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + (rect.width / 3) * 2,
+      rect.top + rect.height / 3,
+      rect.right,
+      rect.top + (rect.height / 3) * 2,
+    );
+  }
+
+  static Rect _getBottomLeftRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left,
+      rect.top + (rect.height / 3) * 2,
+      rect.left + rect.width / 3,
+      rect.bottom,
+    );
+  }
+
+  static Rect _getBottomMiddleRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + rect.width / 3,
+      rect.top + (rect.height / 3) * 2,
+      rect.left + (rect.width / 3) * 2,
+      rect.bottom,
+    );
+  }
+
+  static Rect _getBottomRightRect(Rect rect) {
+    return Rect.fromLTRB(
+      rect.left + (rect.width / 3) * 2,
+      rect.top + (rect.height / 3) * 2,
+      rect.right,
+      rect.bottom,
+    );
   }
 }
