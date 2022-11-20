@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# This script will watch for changes in the shaders directory and
+# automatically recompile the shaders when a change is detected.
+fswatch -o shaders/$1_shader.glsl | xargs -n1 -I{} sh -c 'clear; echo $(date); umbra generate shaders/'$1'_shader.glsl --target flutter-widget --output lib/fractals/'$1' --overwrite'
